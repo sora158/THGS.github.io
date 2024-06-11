@@ -15,6 +15,10 @@
     </style>
 </head>
 
+<body>
+    <h1>Learning from a one-minute monocular video, THGS can learn a 3DGS-based talking human avatar, and we can explicitly contorl over expression, body joints and camera pose.</h1>
+    <img src="control.gif" alt="A descriptive text for the GIF">
+</body>
 
 <body>
     <section class="section">
@@ -56,8 +60,8 @@
         <div class="container is-max-desktop">
             <div class="columns is-centered has-text-centered">
                 <div class="column is-four-fifths">
-                    <video controls class="dynamic-video" id="dynamic-video">
-                        <source src="video_main_20240608_19462137.mp4" type="video/mp4">
+                    <video controls class="dynamic-video" id="dynamic-video_3D">
+                        <source src="3Dvideos.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 <p class="video-description">Our full demo video is here.</p>
@@ -82,17 +86,17 @@
                 }
             };
         </script>
-
     </section>
+    <section class="section">
         <!-- 视频2 -->
         <div class="container is-max-desktop">
             <div class="columns is-centered has-text-centered">
                 <div class="column is-four-fifths">
-                    <video controls class="dynamic-video" id="dynamic-video">
-                        <source src="video_main_20240608_19462137.mp4" type="video/mp4">
+                    <video controls class="dynamic-video" id="dynamic-video_self">
+                        <source src="self_reenactment.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                <p class="video-description">Our LEB results.</p>
+                <p class="video-description">Our self_reenactment results. Given body pose and audio as input, our method can generate lip-synced talking human avatars with facial expressions and variou hand gestures, outperform human reconstruction SoTA method.</p>
                 </div>
             </div>
         </div>
@@ -115,48 +119,7 @@
             };
         </script>
     </section>
+  
 
-</section>
-<!-- 视频3 -->
-<div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-            <video controls class="dynamic-video" id="dynamic-video">
-                <source src="video_main_20240608_19462137.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        <p class="video-description">Our self-reenactment results.</p>
-        </div>
-    </div>
-</div>
-
-<script>
-    // JavaScript to dynamically set the image and video width to match the text width
-    window.onload = function() {
-        var textElement = document.querySelector('.content p'); // 第一个 <p> 元素
-        var imageElement = document.getElementById('dynamic-image');
-        var videoElement = document.getElementById('dynamic-video');
-        if (textElement) {
-            var textWidth = textElement.offsetWidth;
-            if (imageElement) {
-                imageElement.style.width = textWidth + 'px';
-            }
-            if (videoElement) {
-                videoElement.style.width = textWidth + 'px';
-            }
-        }
-    };
-</script>
-</section>
-    <script>
-        // JavaScript to dynamically set the image width to match the text width
-        window.onload = function() {
-            var textElement = document.querySelector('.content p'); // 第一个 <p> 元素
-            var imageElement = document.getElementById('dynamic-image');
-            if (textElement && imageElement) {
-                imageElement.style.width = textElement.offsetWidth + 'px';
-            }
-        };
-    </script>
 </body>
 </html>
