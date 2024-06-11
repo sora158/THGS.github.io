@@ -9,16 +9,25 @@
     <style>
         .dynamic-image {
             display: block;
-            max-width: 100%;
-            height: auto;
+            margin: 0 auto; /* 设置左右外边距为自动，将图像居中 */
+            max-width: 100%; /* 限制图像最大宽度 */
         }
     </style>
 </head>
 
-<body>
-    <h1>Learning from a one-minute monocular video, THGS can learn a 3DGS-based talking human avatar, and we can explicitly contorl over expression, body joints and camera pose.</h1>
-    <img src="control.gif" alt="A descriptive text for the GIF">
-</body>
+
+<style>
+    .centered-image {
+        display: block;
+        margin: 0 auto; /* 设置左右外边距为自动，将图像居中 */
+        max-width: 80%; /* 限制图像最大宽度 */
+    }
+    .centered-sub {
+        display: block;
+        text-align: center; /* 将文本居中 */
+    }
+</style>
+
 
 <body>
     <section class="section">
@@ -27,7 +36,12 @@
             <div class="columns is-centered has-text-centered">
                 <div class="column is-four-fifths">
                     <h1 class="title is-1">THGS: 3D Talking Human Avatar Synthesis via Gaussian Splatting</h1>
-
+                    <body>
+                        <img src="control.gif" alt="A descriptive text for the GIF" class="centered-image">    
+                        <sub class="centered-sub">
+                            Learning from a one-minute monocular video, THGS can learn a 3DGS-based talking human avatar,<br> and we can explicitly contorl over expression, body joints and camera pose.
+                        </sub>
+                    </body>
                     <h2 class="title is-3">Abstract</h2>
                     <div class="content has-text-justified">
                         <p>
@@ -49,6 +63,13 @@
                     <!-- 添加图片 -->
                     <div id="image-container" class="content">
                         <img src="pipeline.png" class="dynamic-image" id="dynamic-image" alt="Image">
+                        <p style="text-align: left;"><strong>Our Pipeline. </strong> Taking a monocular video as input, we learn a 3D Gaussian representation of talking human avatars. We
+                            initialize the 3D Gaussians on the SMPL-X vertices in the canonical space and drive the 3D Gaussians through LBS deformation to obtain
+                            posed Gaussians. For the LBS deformation module, we use pose θ and expression ψ as inputs. During training, θ, ψ, and skinning weights
+                            ωare optimized to achieve better body poses alignment. We also introduce a Learnable Expression Blendshapes to optimize facial dynamics
+                            reconstruction. Audio features are processed through the Spatial Audio Attention Module(SAAM), predicting mouth Gaussians deformation.
+                            We combine mouth Gaussians deformation with the posed Gaussians to produce the final Gaussians, P = {u+∆u,r+∆r,s+∆s,η,f}.
+                            Finally, a 3DGS rasterizer renders images based on camera poses.</p> 
                     </div>
                 </div>
             </div>
@@ -64,7 +85,7 @@
                         <source src="3Dvideos.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                <p class="video-description">Our full demo video is here.</p>
+                <p class="video-description">Our 3D video is here, rendering at a web-based visualizer(viser) at 285 FPS!</p>
                 </div>
             </div>
         </div>
@@ -73,7 +94,7 @@
             // JavaScript to dynamically set the image and video width to match the text width
             window.onload = function() {
                 var textElement = document.querySelector('.content p'); // 第一个 <p> 元素
-                var imageElement = document.getElementById('dynamic-image');
+                var imageElement = document.getElementById('dynamic-image3Dvideos');
                 var videoElement = document.getElementById('dynamic-video');
                 if (textElement) {
                     var textWidth = textElement.offsetWidth;
@@ -119,7 +140,70 @@
             };
         </script>
     </section>
-  
+    <section class="section">
+        <!-- 视频3 -->
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <video controls class="dynamic-video" id="dynamic-video_expression">
+                        <source src="experssionControl.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                <p class="video-description">Our experssion control results, making smiling face, pouty lips, eyebrow movement and blinking. Thanks to our LEB module, we can explicitly control over expression by linear interpolation of learnable expression blendshapes.</p>
+                </div>
+            </div>
+        </div>
+    
+        <script>
+            // JavaScript to dynamically set the image and video width to match the text width
+            window.onload = function() {
+                var textElement = document.querySelector('.content p'); // 第一个 <p> 元素
+                var imageElement = document.getElementById('dynamic-image');
+                var videoElement = document.getElementById('dynamic-video');
+                if (textElement) {
+                    var textWidth = textElement.offsetWidth;
+                    if (imageElement) {
+                        imageElement.style.width = textWidth + 'px';
+                    }
+                    if (videoElement) {
+                        videoElement.style.width = textWidth + 'px';
+                    }
+                }
+            };
+        </script>
+    </section>
 
+    <section class="section">
+        <!-- 视频4 -->
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <video controls class="dynamic-video" id="dynamic-video_expression">
+                        <source src="jointControl.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                <p class="video-description">Our joint control results. We can explicit control angles of wrist, elbow, shoudler and head by adjusting rotation angles of SMPL-X.</p>
+                </div>
+            </div>
+        </div>
+    
+        <script>
+            // JavaScript to dynamically set the image and video width to match the text width
+            window.onload = function() {
+                var textElement = document.querySelector('.content p'); // 第一个 <p> 元素
+                var imageElement = document.getElementById('dynamic-image');
+                var videoElement = document.getElementById('dynamic-video');
+                if (textElement) {
+                    var textWidth = textElement.offsetWidth;
+                    if (imageElement) {
+                        imageElement.style.width = textWidth + 'px';
+                    }
+                    if (videoElement) {
+                        videoElement.style.width = textWidth + 'px';
+                    }
+                }
+            };
+        </script>
+    </section>
 </body>
 </html>
