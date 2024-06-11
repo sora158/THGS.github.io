@@ -7,43 +7,62 @@
     <title>THGS: 3D Talking Human Avatar Synthesis via Gaussian Splatting</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
     <style>
-        .dynamic-image {
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .centered-content {
+            text-align: center;
+        }
+        .centered-image, .dynamic-image, .dynamic-video {
             display: block;
-            margin: 0 auto; /* 设置左右外边距为自动，将图像居中 */
-            max-width: 100%; /* 限制图像最大宽度 */
+            margin: 20px auto;
+            max-width: 100%;
+        }
+        .video-description {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+        .content p {
+            text-align: justify;
+        }
+        .sub-description {
+            text-align: center;
+            font-size: 0.9em;
+        }
+        .index-link {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .github-link {
+            font-size: 1.2em;
+            margin-top: 20px;
+            display: block;
+            text-align: center;
         }
     </style>
 </head>
-
-
-<style>
-    .centered-image {
-        display: block;
-        margin: 0 auto; /* 设置左右外边距为自动，将图像居中 */
-        max-width: 80%; /* 限制图像最大宽度 */
-    }
-    .centered-sub {
-        display: block;
-        text-align: center; /* 将文本居中 */
-    }
-</style>
-
-
 <body>
     <section class="section">
         <div class="container is-max-desktop">
-            <!-- Abstract. -->
-            <div class="columns is-centered has-text-centered">
-                <div class="column is-four-fifths">
+            <div class="columns is-centered">
+                <div class="column is-four-fifths centered-content">
                     <h1 class="title is-1">THGS: 3D Talking Human Avatar Synthesis via Gaussian Splatting</h1>
-                    <body>
-                        <img src="control.gif" alt="explicit control results" class="centered-image">    
-                        <sub class="centered-sub">
-                            Learning from a one-minute monocular video, THGS can learn a 3DGS-based talking human avatar,<br> and we can explicitly contorl over expression, body joints and camera pose.
-                        </sub>
-                    </body>
+                    <a href="https://sora158.github.io/THGS.github.io/" class="github-link" target="_blank">GitHub: Code to be continued</a>
+                    <div class="content">
+                        <h2 class="title is-3">Index</h2>
+                        <a href="#video1" class="index-link">3D Video</a>
+                        <a href="#video2" class="index-link">Self Reenactment</a>
+                        <a href="#video3" class="index-link">Expression Control</a>
+                        <a href="#video4" class="index-link">Joint Control</a>
+                    </div>
+                    <img src="control.gif" alt="explicit control results" class="centered-image">    
+                    <sub class="sub-description">
+                        Learning from a one-minute monocular video, THGS can learn a 3DGS-based talking human avatar,<br> and we can explicitly control over expression, body joints and camera pose.
+                    </sub>
                     <h2 class="title is-3">Abstract</h2>
-                    <div class="content has-text-justified">
+                    <div class="content">
                         <p>
                             Despite the remarkable progress in NeRF/3DGS-based talking head solutions, 
                             directly generating 3D talking human avatars remains challenging. We propose <em>THGS</em>,
@@ -60,150 +79,83 @@
                             Experimental results demonstrate that <em>THGS</em> achieves high-fidelity expressive 3D talking Gaussian human avatar animation at over 150 fps on a web-based rendering system.
                         </p>
                     </div>
-                    <!-- 添加图片 -->
                     <div id="image-container" class="content">
-                        <img src="pipeline.png" class="dynamic-image" id="dynamic-image" alt="Image">
-                        <p style="text-align: left;"><strong>Our Pipeline. </strong> Taking a monocular video as input, we learn a 3D Gaussian representation of talking human avatars. We
-                            initialize the 3D Gaussians on the SMPL-X vertices in the canonical space and drive the 3D Gaussians through LBS deformation to obtain
-                            posed Gaussians. For the LBS deformation module, we use pose θ and expression ψ as inputs. During training, θ, ψ, and skinning weights
-                            ωare optimized to achieve better body poses alignment. We also introduce a Learnable Expression Blendshapes to optimize facial dynamics
-                            reconstruction. Audio features are processed through the Spatial Audio Attention Module(SAAM), predicting mouth Gaussians deformation.
-                            We combine mouth Gaussians deformation with the posed Gaussians to produce the final Gaussians, P = {u+∆u,r+∆r,s+∆s,η,f}.
-                            Finally, a 3DGS rasterizer renders images based on camera poses.</p> 
+                        <img src="pipeline.png" class="dynamic-image" alt="Pipeline Image">
+                        <p class="sub-description"><strong>Our Pipeline.</strong> Taking a monocular video as input, we learn a 3D Gaussian representation of talking human avatars. We initialize the 3D Gaussians on the SMPL-X vertices in the canonical space and drive the 3D Gaussians through LBS deformation to obtain posed Gaussians. For the LBS deformation module, we use pose θ and expression ψ as inputs. During training, θ, ψ, and skinning weights ω are optimized to achieve better body poses alignment. We also introduce a Learnable Expression Blendshapes to optimize facial dynamics reconstruction. Audio features are processed through the Spatial Audio Attention Module (SAAM), predicting mouth Gaussians deformation. We combine mouth Gaussians deformation with the posed Gaussians to produce the final Gaussians, P = {u+∆u,r+∆r,s+∆s,η,f}. Finally, a 3DGS rasterizer renders images based on camera poses.</p>
                     </div>
                 </div>
             </div>
-            <!--/ Abstract. -->
         </div>
     </section>
-    <section class="section">
-        <!-- 视频1 -->
+    <section class="section" id="video1">
         <div class="container is-max-desktop">
-            <div class="columns is-centered has-text-centered">
-                <div class="column is-four-fifths">
-                    <video controls class="dynamic-video" id="dynamic-video_3D">
+            <div class="columns is-centered">
+                <div class="column is-four-fifths centered-content">
+                    <video controls class="dynamic-video">
                         <source src="3Dvideos.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                <p class="video-description">Our 3D video is here, rendering at a web-based visualizer(viser) at 285 FPS!</p>
+                    <p class="video-description">Our 3D video is here, rendering at a web-based visualizer(viser) at 285 FPS!</p>
                 </div>
             </div>
         </div>
-    
-        <script>
-            // JavaScript to dynamically set the image and video width to match the text width
-            window.onload = function() {
-                var textElement = document.querySelector('.content p'); // 第一个 <p> 元素
-                var imageElement = document.getElementById('dynamic-image3Dvideos');
-                var videoElement = document.getElementById('dynamic-video');
-                if (textElement) {
-                    var textWidth = textElement.offsetWidth;
-                    if (imageElement) {
-                        imageElement.style.width = textWidth + 'px';
-                    }
-                    if (videoElement) {
-                        videoElement.style.width = textWidth + 'px';
-                    }
-                }
-            };
-        </script>
     </section>
-    <section class="section">
-        <!-- 视频2 -->
+    <section class="section" id="video2">
         <div class="container is-max-desktop">
-            <div class="columns is-centered has-text-centered">
-                <div class="column is-four-fifths">
-                    <video controls class="dynamic-video" id="dynamic-video_self">
+            <div class="columns is-centered">
+                <div class="column is-four-fifths centered-content">
+                    <video controls class="dynamic-video">
                         <source src="self_reenactment.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                <p class="video-description">Our self_reenactment results. Given body pose and audio as input, our method can generate lip-synced talking human avatars with facial expressions and variou hand gestures, outperform human reconstruction SoTA method.</p>
+                    <p class="video-description">Our self-reenactment results. Given body pose and audio as input, our method can generate lip-synced talking human avatars with facial expressions and various hand gestures, outperforming human reconstruction SoTA method.</p>
                 </div>
             </div>
         </div>
-    
-        <script>
-            // JavaScript to dynamically set the image and video width to match the text width
-            window.onload = function() {
-                var textElement = document.querySelector('.content p'); // 第一个 <p> 元素
-                var imageElement = document.getElementById('dynamic-image');
-                var videoElement = document.getElementById('dynamic-video');
-                if (textElement) {
-                    var textWidth = textElement.offsetWidth;
-                    if (imageElement) {
-                        imageElement.style.width = textWidth + 'px';
-                    }
-                    if (videoElement) {
-                        videoElement.style.width = textWidth + 'px';
-                    }
-                }
-            };
-        </script>
     </section>
-    <section class="section">
-        <!-- 视频3 -->
+    <section class="section" id="video3">
         <div class="container is-max-desktop">
-            <div class="columns is-centered has-text-centered">
-                <div class="column is-four-fifths">
-                    <video controls class="dynamic-video" id="dynamic-video_expression">
-                        <source src="experssionControl.mp4" type="video/mp4">
+            <div class="columns is-centered">
+                <div class="column is-four-fifths centered-content">
+                    <video controls class="dynamic-video">
+                        <source src="expressionControl.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                <p class="video-description">Our experssion control results, making smiling face, pouty lips, eyebrow movement and blinking. Thanks to our LEB module, we can explicitly control over expression by linear interpolation of learnable expression blendshapes.</p>
+                    <p class="video-description">Our expression control results, making smiling face, pouty lips, eyebrow movement, and blinking. Thanks to our LEB module, we can explicitly control over expression by linear interpolation of learnable expression blendshapes.</p>
                 </div>
             </div>
         </div>
-    
-        <script>
-            // JavaScript to dynamically set the image and video width to match the text width
-            window.onload = function() {
-                var textElement = document.querySelector('.content p'); // 第一个 <p> 元素
-                var imageElement = document.getElementById('dynamic-image');
-                var videoElement = document.getElementById('dynamic-video');
-                if (textElement) {
-                    var textWidth = textElement.offsetWidth;
-                    if (imageElement) {
-                        imageElement.style.width = textWidth + 'px';
-                    }
-                    if (videoElement) {
-                        videoElement.style.width = textWidth + 'px';
-                    }
-                }
-            };
-        </script>
     </section>
-
-    <section class="section">
-        <!-- 视频4 -->
+    <section class="section" id="video4">
         <div class="container is-max-desktop">
-            <div class="columns is-centered has-text-centered">
-                <div class="column is-four-fifths">
-                    <video controls class="dynamic-video" id="dynamic-video_expression">
+            <div class="columns is-centered">
+                <div class="column is-four-fifths centered-content">
+                    <video controls class="dynamic-video">
                         <source src="jointControl.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                <p class="video-description">Our joint control results. We can explicit control angles of wrist, elbow, shoudler and head by adjusting rotation angles of SMPL-X.</p>
+                    <p class="video-description">Our joint control results. We can explicitly control angles of wrist, elbow, shoulder, and head by adjusting rotation angles of SMPL-X.</p>
                 </div>
             </div>
         </div>
-    
-        <script>
-            // JavaScript to dynamically set the image and video width to match the text width
-            window.onload = function() {
-                var textElement = document.querySelector('.content p'); // 第一个 <p> 元素
-                var imageElement = document.getElementById('dynamic-image');
-                var videoElement = document.getElementById('dynamic-video');
-                if (textElement) {
-                    var textWidth = textElement.offsetWidth;
-                    if (imageElement) {
-                        imageElement.style.width = textWidth + 'px';
-                    }
-                    if (videoElement) {
-                        videoElement.style.width = textWidth + 'px';
-                    }
-                }
-            };
-        </script>
     </section>
+
+    <script>
+        // JavaScript to dynamically set the image and video width to match the text width
+        window.onload = function() {
+            var textElements = document.querySelectorAll('.content p');
+            var imageElements = document.querySelectorAll('.dynamic-image');
+            var videoElements = document.querySelectorAll('.dynamic-video');
+            textElements.forEach(function(textElement) {
+                var textWidth = textElement.offsetWidth;
+                imageElements.forEach(function(imageElement) {
+                    imageElement.style.width = textWidth + 'px';
+                });
+                videoElements.forEach(function(videoElement) {
+                    videoElement.style.width = textWidth + 'px';
+                });
+            });
+        };
+    </script>
 </body>
 </html>
