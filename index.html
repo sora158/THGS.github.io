@@ -6,7 +6,16 @@
     <meta name="description" content="THGS: 3D Talking Human Avatar Synthesis via Gaussian Splatting.">
     <title>THGS: 3D Talking Human Avatar Synthesis via Gaussian Splatting</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <style>
+        .dynamic-image {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
+
+
 <body>
     <section class="section">
         <div class="container is-max-desktop">
@@ -14,6 +23,7 @@
             <div class="columns is-centered has-text-centered">
                 <div class="column is-four-fifths">
                     <h1 class="title is-1">THGS: 3D Talking Human Avatar Synthesis via Gaussian Splatting</h1>
+
                     <h2 class="title is-3">Abstract</h2>
                     <div class="content has-text-justified">
                         <p>
@@ -32,14 +42,121 @@
                             Experimental results demonstrate that <em>THGS</em> achieves high-fidelity expressive 3D talking Gaussian human avatar animation at over 150 fps on a web-based rendering system.
                         </p>
                     </div>
+                    <!-- 添加图片 -->
+                    <div id="image-container" class="content">
+                        <img src="pipeline.png" class="dynamic-image" id="dynamic-image" alt="Image">
+                    </div>
                 </div>
             </div>
             <!--/ Abstract. -->
         </div>
     </section>
-    <video controls>
-        <source src="video_main_20240608_19462137.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+    <section class="section">
+        <!-- 视频1 -->
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <video controls class="dynamic-video" id="dynamic-video">
+                        <source src="video_main_20240608_19462137.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                <p class="video-description">Our full demo video is here.</p>
+                </div>
+            </div>
+        </div>
+    
+        <script>
+            // JavaScript to dynamically set the image and video width to match the text width
+            window.onload = function() {
+                var textElement = document.querySelector('.content p'); // 第一个 <p> 元素
+                var imageElement = document.getElementById('dynamic-image');
+                var videoElement = document.getElementById('dynamic-video');
+                if (textElement) {
+                    var textWidth = textElement.offsetWidth;
+                    if (imageElement) {
+                        imageElement.style.width = textWidth + 'px';
+                    }
+                    if (videoElement) {
+                        videoElement.style.width = textWidth + 'px';
+                    }
+                }
+            };
+        </script>
+
+    </section>
+        <!-- 视频2 -->
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <video controls class="dynamic-video" id="dynamic-video">
+                        <source src="video_main_20240608_19462137.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                <p class="video-description">Our LEB results.</p>
+                </div>
+            </div>
+        </div>
+    
+        <script>
+            // JavaScript to dynamically set the image and video width to match the text width
+            window.onload = function() {
+                var textElement = document.querySelector('.content p'); // 第一个 <p> 元素
+                var imageElement = document.getElementById('dynamic-image');
+                var videoElement = document.getElementById('dynamic-video');
+                if (textElement) {
+                    var textWidth = textElement.offsetWidth;
+                    if (imageElement) {
+                        imageElement.style.width = textWidth + 'px';
+                    }
+                    if (videoElement) {
+                        videoElement.style.width = textWidth + 'px';
+                    }
+                }
+            };
+        </script>
+    </section>
+
+</section>
+<!-- 视频3 -->
+<div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+            <video controls class="dynamic-video" id="dynamic-video">
+                <source src="video_main_20240608_19462137.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        <p class="video-description">Our self-reenactment results.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript to dynamically set the image and video width to match the text width
+    window.onload = function() {
+        var textElement = document.querySelector('.content p'); // 第一个 <p> 元素
+        var imageElement = document.getElementById('dynamic-image');
+        var videoElement = document.getElementById('dynamic-video');
+        if (textElement) {
+            var textWidth = textElement.offsetWidth;
+            if (imageElement) {
+                imageElement.style.width = textWidth + 'px';
+            }
+            if (videoElement) {
+                videoElement.style.width = textWidth + 'px';
+            }
+        }
+    };
+</script>
+</section>
+    <script>
+        // JavaScript to dynamically set the image width to match the text width
+        window.onload = function() {
+            var textElement = document.querySelector('.content p'); // 第一个 <p> 元素
+            var imageElement = document.getElementById('dynamic-image');
+            if (textElement && imageElement) {
+                imageElement.style.width = textElement.offsetWidth + 'px';
+            }
+        };
+    </script>
 </body>
 </html>
